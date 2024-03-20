@@ -28,6 +28,21 @@ class WithdrawalController extends Controller
     }
     public function update(Request $request, Withdrawal $withdrawal)
     {
+         // Validate the request data
+         $validatedData = $request->validate([
+            'balance' => 'required|numeric',
+            'amount' => 'required|numeric',
+            'status' => 'required|in:pending,approved,completed',
+        ]);
 
+        $withdrawal->update($validatedData);
+
+        $withdrawal->update([
+            'amount' => $validatedData['amount'],
+            'status' => $validatedData['status']
+        ]);
+
+        // Redirect back with success message
+        // return redirect()->route('admin.withdrawal.index')->with('success', 'Withdrawal updated successfully');
     }
 }
