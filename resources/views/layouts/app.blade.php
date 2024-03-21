@@ -13,10 +13,10 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
-    <link rel="preload" as="style" href="public/build/assets/app-BIG_-P4-.css" public="" build="" assets="">
-    <link rel="modulepreload" href="public/build/assets/app-ZDKuOaA1.js">
-    <link rel="stylesheet" href="public/build/assets/app-BIG_-P4-.css">
-    <script type="module" src="public/build/assets/app-ZDKuOaA1.js"></script>
+    <link rel="preload" as="style" href="public/build/assets/app-FsckNiFQ.css" public="" build="" assets="">
+    <link rel="modulepreload" href="public/build/assets/app-BN9vMoeE.js">
+    <link rel="stylesheet" href="public/build/assets/app-FsckNiFQ.css">
+    <script type="module" src="public/build/assets/app-BN9vMoeE.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="font-sans antialiased">

@@ -3,21 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\AccountBalance;
-use App\Models\Deposit;
-use App\Models\Investment;
-use App\Models\Referral;
+
 use App\Models\User;
-use App\Models\Withdrawal;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
@@ -63,6 +56,7 @@ class RegisteredUserController extends Controller
                 'username' => $request->username,
                 // 'email' => $request->email,
                 'phone' => $request->phone,
+                'status' => 'inactive',
                 'balance' => 0.00,
                 'referral_id' => $referrer ? $referrer->id : null,
                 'password' => Hash::make($request->password),

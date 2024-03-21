@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="container mx-auto w-full mt-2 flex gap-4  text-skin-primary flex-col items-center justify-center p-4">
-        <div class="w-full grid grid-cols-3 divide-x divide-lime-800">
+        {{-- <div class="w-full grid grid-cols-3 divide-x divide-lime-800">
             <div class="col-span-1 bg-skin-fill p-4 flex flex-col items-center justify-center">
                 <p class="text-lg font-medium">
                     {{ $referrals }}
@@ -15,7 +15,7 @@
                 <p class="text-lg font-medium"> {{ $uplineBonus }}</p>
                 <h5 class="text-xl font-bold uppercase">{{ __('Referral income') }}</h5>
             </div>
-        </div>
+        </div> --}}
         <div
             class="w-full p-4 text-center sm:p-8 ">
             <div class="space-y-3 mt-10 flex flex-col">
@@ -47,14 +47,16 @@
             <thead class="border-b-2 bg-lime-50 border-b-purple-200">
                 <tr>
                     <th class="p-3 text-sm font-semibold tracking-wide text-left">Username</th>
-                    <th class="p-3 text-sm font-semibold tracking-wide text-left">Name</th>
+                    <th class="p-3 text-sm font-semibold tracking-wide text-left">Phone</th>
+                    <th class="p-3 text-sm font-semibold tracking-wide text-left">Status</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($downlineData ?? [] as $index => $referral)
                     <tr class="bg-white border-b border-gray-200 dark:border-gray-700">
                         <td class="p-3 text-sm text-gray-700">{{ $referral->username }}</td>
-                        <td class="p-3 text-sm text-gray-700">{{ $referral->name }}</td>
+                        <td class="p-3 text-sm text-gray-700">{{ $referral->phone }}</td>
+                        <td class="p-3 text-sm text-gray-700">{{ $referral->status }}</td>
                     </tr>
                 @empty
                     <tr>

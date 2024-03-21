@@ -14,17 +14,20 @@ class InvestService
     public function createInvestment(User $user, $capital, Order $order)
     {
         // Calculate values based on investment details
-        $rate = 0.20;
-        $days = 9;
+        $rate = $this->rate($order);
+        $days = $this->calculateInvestmentDays($order);
         $dailyIncome = $capital * $rate;
-
+        // dd($dailyIncome, $days);
+       
         return DB::transaction(function () use ($user, $capital, $rate, $days, $dailyIncome, $order) {
+            $return = $dailyIncome * $days;
+            // dd($return);
             // Create invest record
             $investment = Invest::create([
                 'user_id' => $user->id,
                 'order_id' => $order->id,
                 'capital' => $capital,
-                'returns' => $capital * (1 + $rate),
+                'returns' => $return,
                 'daily_income' => $dailyIncome,
                 'rate' => $rate,
                 'days' => $days,
@@ -33,10 +36,14 @@ class InvestService
                 'status' => 'active',
             ]);
 
-            // Update user balance after investment is created
-            $user->balance -= $capital;
-            $user->save();
+            // dd($investment);
 
+            // Update user balance after investment is created
+            $user->balance -= $capital; // Subtract the capital from the user's balance
+            $user->status = 'active'; // Set the status to 'active'
+            $user->save(); // Save the changes to the user model
+            
+         
             // Check if the user has a referral
             if ($user->referral_id) {
                 // Find the referring user
@@ -67,5 +74,16 @@ class InvestService
 
             return $investment;
         });
+    }
+    private function calculateInvestmentDays(Order $order)
+    {
+        // Logic to calculate days from the order table
+        return $order->days; // Default to 9 days if not specified in the order
+    }
+
+    private function rate(Order $order)
+    {
+        // Logic to calculate days from the order table
+        return $order->rate; // Default to 9 days if not specified in the order
     }
 }

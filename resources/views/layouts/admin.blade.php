@@ -13,6 +13,10 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
+    <link rel="preload" as="style" href="public/build/assets/app-FsckNiFQ.css" public="" build="" assets="">
+    <link rel="modulepreload" href="public/build/assets/app-BN9vMoeE.js">
+    <link rel="stylesheet" href="public/build/assets/app-FsckNiFQ.css">
+    <script type="module" src="public/build/assets/app-BN9vMoeE.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -23,13 +27,15 @@
             <div class=" flex justify-between items-center">
                 <div class="font-semibold text-lg text-skin-secondary">{{ config('app.name') }}</div>
                 <div class="flex space-x-4">
-                    <a href="{{ route('admin-user.index') }}"
+                    <a href="{{ route('admin.users.index')}}"
                         class="text-skin-secondary hover:text-lime-300">{{ __('User') }}</a>
-                    <a href="{{ route('admin-deposit.index') }}"
+                        <a href="{{ route('admin.order.index') }}"
+                        class="text-skin-secondary hover:text-lime-300">{{ __('Order') }}</a>
+                    <a href="{{ route('admin.deposit.index') }}"
                         class="text-skin-secondary hover:text-lime-300">{{ __('Deposit') }}</a>
-                    <a href="{{ route('withdrawal.index') }}"
+                    <a href="{{ route('admin.withdrawal.index') }}"
                         class="text-skin-secondary hover:text-lime-300">{{ __('Withdrawal') }}</a>
-                    <a href="{{ route('admin-invest.index') }}"
+                    <a href="{{ route('admin.invest.index') }}"
                         class="text-skin-secondary hover:text-lime-300">{{ __('Invest') }}</a>
                 </div>
             </div>

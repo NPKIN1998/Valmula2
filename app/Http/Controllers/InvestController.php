@@ -46,7 +46,7 @@ class InvestController extends Controller
         }
 
         // Validate capital
-        if ($capital < 800) {
+        if ($capital < 500) {
             $message = 'Your capital is Ksh ' . $capital . '. Add Ksh ' . (1000 - $capital) . ' to continue investing.';
             return redirect()->route('invest')->with('error', $message);
         }

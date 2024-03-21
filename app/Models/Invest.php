@@ -14,6 +14,7 @@ class Invest extends Model
         'user_id',
         'order_id',
         'capital',
+        'returns',
         'amount',
         'daily_income',
         'rate',

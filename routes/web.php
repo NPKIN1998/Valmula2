@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\WithdrawalController as AdminWithdrawalController
 use App\Http\Controllers\Admin\DepositController as AdminDepositController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\InvestController as AdminInvestController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,16 +27,20 @@ use App\Http\Controllers\Admin\InvestController as AdminInvestController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::prefix('admin')->group(function () {
+Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function () {
+// Route::prefix('admin')->group(function () {
     Route::resource('withdrawal', AdminWithdrawalController::class);
-    Route::resource('deposist', AdminDepositController::class);
+    Route::post('/withdrawal/search', [AdminWithdrawalController::class, 'search'])->name('withdrawal.search');
+    Route::resource('deposit', AdminDepositController::class);
+    Route::resource('order', AdminOrderController::class);
+    Route::resource('invest', AdminInvestController::class);
+    Route::resource('users', AdminUserController::class);
 });
 
 // Route::get('/admin/withdrawal', [AdminWithdrawalController::class,'index'])->name('admin-withdrawal.index');
 // Route::get('/admin/withdrawal/{withdrawal}', [AdminWithdrawalController::class,'edit'])->name('admin-withdrawal.edit');
-Route::get('/admin/users', [AdminUserController::class,'index'])->name('admin-user.index');
-Route::get('/admin/deposit', [AdminDepositController::class,'index'])->name('admin-deposit.index');
-Route::get('/admin/invest', [AdminInvestController::class,'index'])->name('admin-invest.index');
+// Route::get('/admin/deposit', [AdminDepositController::class,'index'])->name('admin-deposit.index');
+// Route::get('/admin/invest', [AdminInvestController::class,'index'])->name('admin-invest.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/account',[AccountController::class, 'index'])->name('account');
